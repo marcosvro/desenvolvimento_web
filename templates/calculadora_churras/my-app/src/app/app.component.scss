@@ -1,0 +1,33 @@
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-form-field {
+  margin-right: 12px;
+}
+
+.show-list-item {
+  flex-basis: 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.show-qt-value {
+	position: absolute;
+	right: 12px;
+}
+
+.main-tab {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 800px;
+	position: absolute;
+	left: 50%;
+	margin-left: -400px;
+}

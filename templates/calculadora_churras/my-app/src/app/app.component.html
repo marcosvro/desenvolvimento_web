@@ -1,0 +1,168 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<head>
+</head>
+<body>
+	<div style="position:fixed;top:0;left:0;right:0;bottom:0;height:100%;width:100%;background-color: #8888FF">
+		
+	</div>
+  <mat-card class = "main-tab">
+  	<mat-card-title style="text-align: center;">
+  		Calculadora de churrasco
+  	</mat-card-title>
+  	<mat-accordion class="example-headers-align">
+	    <mat-expansion-panel [expanded]= "step === 0" (opened)="setStep(0)" hideToggle>
+	      <mat-expansion-panel-header>
+	        <mat-panel-title>
+	          Convidados
+	        </mat-panel-title>
+	        <mat-panel-description>
+	          Insira informações sobre os convidados
+	          <mat-icon>person_pin</mat-icon>
+	        </mat-panel-description>
+	      </mat-expansion-panel-header>
+
+	      <mat-form-field>
+	        <input matInput placeholder="Número de homens" type="number" (change)="onChangeHomens($event)">
+	      </mat-form-field>
+	      <br/>
+	      <mat-form-field>
+	        <input matInput placeholder="Número de mulheres" type="number" (change)="onChangeMulheres($event)">
+	      </mat-form-field>
+	      <br/>
+	      <mat-form-field>
+	        <input matInput placeholder="Número de crinças" type="number" (change)="onChangeCriancas($event)">
+	      </mat-form-field>
+
+	      <mat-action-row>
+	        <button mat-button color="primary" (click)="nextStep()">Avançar</button>
+	      </mat-action-row>
+	    </mat-expansion-panel>
+
+	    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+	      <mat-expansion-panel-header>
+	        <mat-panel-title>
+	          Carnes
+	        </mat-panel-title>
+	        <mat-panel-description>
+	          Tipos de carne para o evento
+	          <mat-icon>restaurant</mat-icon>
+	        </mat-panel-description>
+	      </mat-expansion-panel-header>
+
+	      <!-- LISTA TIPOS DE CARNE -->
+	      <mat-list>
+	        <h2 mat-subheader>Carne Bovina</h2>
+	        <mat-list-item *ngFor="let carne of carneBovina">
+	          <mat-checkbox [checked]='carne.listed' (change)="onChangeCheckBox(carne)">{{carne.name}}</mat-checkbox>
+	        </mat-list-item>
+	      </mat-list>
+	      <br/>
+	      <mat-list>
+	        <h2 mat-subheader>Carne de Frango</h2>
+	        <mat-list-item *ngFor="let carne of carneFrango">
+	          <mat-checkbox [checked]='carne.listed' (change)="onChangeCheckBox(carne)">{{carne.name}}</mat-checkbox>
+	        </mat-list-item>
+	      </mat-list>
+	      <br/>
+	      <mat-list>
+	        <h2 mat-subheader>Linguiças</h2>
+	        <mat-list-item *ngFor="let carne of linguicas">
+	          <mat-checkbox [checked]='carne.listed' (change)="onChangeCheckBox(carne)">{{carne.name}}</mat-checkbox>
+	        </mat-list-item>
+	      </mat-list>
+	      <br/>
+	      <mat-list>
+	        <h2 mat-subheader>Peixes</h2>
+	        <mat-list-item *ngFor="let carne of peixes">
+	          <mat-checkbox [checked]='carne.listed' (change)="onChangeCheckBox(carne)">{{carne.name}}</mat-checkbox>
+	        </mat-list-item>
+	      </mat-list>
+
+	      <mat-action-row>
+	        <button mat-button color="warn" (click)="prevStep()">Voltar</button>
+	        <button mat-button color="primary" (click)="nextStep()">Avançar</button>
+	      </mat-action-row>
+	    </mat-expansion-panel>
+	    <!--
+	    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+	      <mat-expansion-panel-header>
+	        <mat-panel-title>
+	          Bebidas e etc..
+	        </mat-panel-title>
+	        <mat-panel-description>
+	          Informe os tipo de bebidas e outros componentes
+	          <mat-icon>local_bar</mat-icon>
+	        </mat-panel-description>
+	      </mat-expansion-panel-header>
+
+	      <mat-form-field>
+	        <input matInput placeholder="First name">
+	      </mat-form-field>
+	      <br/>
+	      <mat-form-field>
+	        <input matInput placeholder="Age">
+	      </mat-form-field>
+
+
+	      <mat-action-row>
+	        <button mat-button color="warn" (click)="prevStep()">Voltar</button>
+	      </mat-action-row>
+	    </mat-expansion-panel>
+	  	-->
+
+	    <!-- PRINT LIST -->
+	    <mat-card>
+	    	<mat-card-title style="text-align: center;">
+		  		Lista de Componentes
+		  	</mat-card-title>
+		  	<mat-list>
+		      <div *ngFor="let carne of carneBovina">
+		        <mat-list-item class="show-list-item" *ngIf="carne.listed">
+		          <p>{{carne.name}}</p>
+		          <p class="show-qt-value">{{kg_cada_carne}}KG</p>
+		          <mat-divider></mat-divider>
+		        </mat-list-item>
+		      </div>
+		    </mat-list>
+
+		    <mat-list>
+		      <div *ngFor="let carne of carneFrango">
+		        <mat-list-item class="show-list-item" *ngIf="carne.listed">
+		          <p>{{carne.name}}</p>
+		          <p class="show-qt-value">{{kg_cada_carne}}KG</p>
+		          <mat-divider></mat-divider>
+		        </mat-list-item>
+		      </div>
+		    </mat-list>
+
+		    <mat-list>
+		      <div *ngFor="let carne of linguicas">
+		        <mat-list-item class="show-list-item" *ngIf="carne.listed">
+		          <p>{{carne.name}}</p>
+		          <p class="show-qt-value">{{kg_cada_carne}}KG</p>
+		          <mat-divider></mat-divider>
+		        </mat-list-item>
+		      </div>
+		    </mat-list>
+
+		    <mat-list>
+		      <div *ngFor="let carne of peixes">
+		        <mat-list-item *ngIf="carne.listed">
+		          <p>{{carne.name}}</p>
+		          <p class="show-qt-value">{{kg_cada_carne}}KG</p>
+		          <mat-divider></mat-divider>
+		        </mat-list-item>
+		      </div>
+		    </mat-list>
+	    </mat-card>
+
+	    
+
+
+	  </mat-accordion>
+  </mat-card>
+  
+</body>
+
+
+
