@@ -1,0 +1,30 @@
+<head>
+  
+</head>
+<body >
+  <div style="position:fixed;top:0;left:0;right:0;bottom:0;height:100%;width:100%;background-color: #333333"></div>
+  <mat-card class = "main-tab"> 
+    <mat-card-title style="text-align: center;">Calcule seu IMC</mat-card-title>
+    <form [formGroup]="ownerForm" autocomplete="off" novalidate (ngSubmit)="calculaIMC(ownerForm.value)" fxLayout="column wrap"
+      fxLayoutAlign="center center" fxLayoutGap="10px">
+      <mat-card-content>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Seu peso" formControlName="peso">
+          <mat-error *ngIf="hasError('peso', 'required')">Campo obrigatório</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Sua altura" formControlName="altura" >
+          <mat-error *ngIf="hasError('altura', 'required')">Campo obrigatório</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions style="text-align: center;">
+        <button mat-raised-button color="primary" [disabled]="!ownerForm.valid">Create</button>
+      </mat-card-actions>
+    </form>
+    <div *ngIf="exibe_imc">
+      <mat-divider ></mat-divider>
+      <h2 class="text-result"> Seu IMC é {{imc}}</h2>
+    </div>
+  </mat-card>
+</body>
